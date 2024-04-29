@@ -222,6 +222,10 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
     </repositories>
     <properties>
         <maven-plugin-version>1.0.0</maven-plugin-version>

@@ -21,7 +21,7 @@ import io.swagger.petstore.model.Order;
 import java.util.*;
 
 public class OrderData {
-    private static List<Order> orders = new ArrayList<>();
+    public static List<Order> orders = new ArrayList<>();
 
     static {
         orders.add(createOrder(1, 1, 100, new Date(), "placed", true));

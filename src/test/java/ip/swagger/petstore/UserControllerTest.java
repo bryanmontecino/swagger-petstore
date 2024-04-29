@@ -1,34 +1,46 @@
 package ip.swagger.petstore;
+
 import io.swagger.oas.inflector.models.RequestContext;
 import io.swagger.oas.inflector.models.ResponseContext;
 import io.swagger.petstore.controller.UserController;
 import io.swagger.petstore.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import javax.ws.rs.core.Response;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserControllerTest {
     private UserController controller;
+    private RequestContext mockRequest;
 
     @BeforeEach
     void setUp() {
-        controller = new UserController(); // Ensure UserController can be instantiated
+        controller = new UserController(); // Instantiate the UserController
+        mockRequest = new ManualRequestContext(); // Create a manual RequestContext
     }
 
     @Test
     void testCreateUser() {
-        User newUser = new User(1L, "newuser", "New", "User", "newuser@example.com", "password", "555-0123", 1);
-        ResponseContext result = controller.createUser(new RequestContext(), newUser);
-        assertEquals(Response.Status.OK.getStatusCode(), result.getStatus());
-        assertNotNull(result.getEntity());
+        User newUser = new User();
+        newUser.setId(1L);
+        newUser.setUsername("newuser");
+        newUser.setFirstName("New");
+        newUser.setLastName("User");
+        newUser.setEmail("newuser@example.com");
+        newUser.setPassword("password");
+        newUser.setPhone("555-0123");
+        newUser.setUserStatus(1);
+
+        // Test createUser method
+        ResponseContext result = controller.createUser(mockRequest, newUser);
+        assertEquals(Response.Status.OK.getStatusCode(), result.getStatus(), "Expected HTTP status 200 OK");
+        assertNotNull(result.getEntity(), "Entity should not be null after creation");
     }
 
     @Test
     void testDeleteUser() {
-        ResponseContext result = controller.deleteUser(new RequestContext(), "newuser");
-        assertEquals(Response.Status.OK.getStatusCode(), result.getStatus());
+        // Test deleteUser method
+        ResponseContext result = controller.deleteUser(mockRequest, "newuser");
+        assertEquals(Response.Status.OK.getStatusCode(), result.getStatus(), "Expected HTTP status 200 OK");
     }
 }

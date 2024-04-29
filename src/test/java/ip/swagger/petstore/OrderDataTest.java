@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 import java.util.Date;
 import java.util.Map;
 
@@ -14,7 +13,13 @@ class OrderDataTest {
 
     @BeforeEach
     void setUp() {
-        orderData = new OrderData(); // Setup OrderData for each test
+        // Reset and reinitialize orders for a clean test environment
+        orderData = new OrderData();
+        OrderData.orders.clear();  // Assuming 'orders' list is accessible, make it public or provide a method to clear it
+        // Re-add orders
+        OrderData.orders.add(OrderData.createOrder(1, 1, 100, new Date(), "placed", true));
+        OrderData.orders.add(OrderData.createOrder(2, 1, 50, new Date(), "approved", true));
+        OrderData.orders.add(OrderData.createOrder(3, 1, 50, new Date(), "delivered", true));
     }
 
     @Test
@@ -26,24 +31,23 @@ class OrderDataTest {
 
     @Test
     void testGetOrderById() {
-        assertNotNull(orderData.getOrderById(1));
-        assertNull(orderData.getOrderById(999)); // Assuming 999 is an invalid ID
+        assertNotNull(orderData.getOrderById(1), "Order with ID 1 should not be null");
+        assertNull(orderData.getOrderById(999), "Order with ID 999 should be null"); // Assuming 999 is an invalid ID
     }
 
     @Test
     void testDeleteOrderById() {
+        assertNotNull(orderData.getOrderById(1), "Order with ID 1 should exist before deletion");
         orderData.deleteOrderById(1L);
-        assertNull(orderData.getOrderById(1)); // Ensure the order is deleted
+        assertNull(orderData.getOrderById(1), "Order with ID 1 should have been deleted");
     }
 
     @Test
     void testGetCountByStatus() {
         Map<String, Integer> countByStatus = orderData.getCountByStatus();
-        assertTrue(countByStatus.containsKey("placed"));
-        assertTrue(countByStatus.containsKey("approved"));
-        assertTrue(countByStatus.containsKey("delivered"));
-        assertEquals(100, countByStatus.get("placed"));
-        assertEquals(50, countByStatus.get("approved"));
-        assertEquals(50, countByStatus.get("delivered"));
+        assertNotNull(countByStatus, "Count by status should not be null");
+        assertEquals(100, countByStatus.getOrDefault("placed", 0), "There should be 100 units of 'placed' status");
+        assertEquals(50, countByStatus.getOrDefault("approved", 0), "There should be 50 units of 'approved' status");
+        assertEquals(50, countByStatus.getOrDefault("delivered", 0), "There should be 50 units of 'delivered' status");
     }
 }
