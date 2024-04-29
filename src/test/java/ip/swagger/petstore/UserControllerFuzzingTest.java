@@ -9,14 +9,14 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserControllerFuzzTest {
+class UserControllerFuzzingTest {
     private UserController controller;
     private RequestContext mockRequest;
 
     @BeforeEach
     void setUp() {
         controller = new UserController();
-        mockRequest = new ManualRequestContext(); // Assuming ManualRequestContext is correctly implemented
+        mockRequest = new ManualRequestContext();
     }
 
     @Test

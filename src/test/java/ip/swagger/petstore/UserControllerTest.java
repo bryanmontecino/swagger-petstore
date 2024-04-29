@@ -15,8 +15,8 @@ class UserControllerTest {
 
     @BeforeEach
     void setUp() {
-        controller = new UserController(); // Instantiate the UserController
-        mockRequest = new ManualRequestContext(); // Create a manual RequestContext
+        controller = new UserController();
+        mockRequest = new ManualRequestContext();
     }
 
     @Test

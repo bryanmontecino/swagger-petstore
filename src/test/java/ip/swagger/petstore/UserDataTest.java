@@ -15,7 +15,6 @@ class UserDataTest {
 
     @Test
     void testAddAndFindUser() {
-        // Ensure newUser has non-null fields, especially 'username'
         User newUser = new User();
         newUser.setId(1L);
         newUser.setUsername("new-user");
@@ -32,7 +31,6 @@ class UserDataTest {
 
     @Test
     void testDeleteUser() {
-        // Adding user to ensure the username to be deleted is present
         User userToDelete = new User();
         userToDelete.setId(2L);
         userToDelete.setUsername("delete user");
@@ -44,7 +42,7 @@ class UserDataTest {
         userToDelete.setUserStatus(1);
 
         userData.addUser(userToDelete);
-        // First, assert user is added correctly
+        // Assert user is added correctly
         assertNotNull(userData.findUserByName("delete user"), "User should exist before deletion");
 
         userData.deleteUser("delete user");

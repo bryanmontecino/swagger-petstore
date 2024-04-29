@@ -13,10 +13,9 @@ class OrderDataTest {
 
     @BeforeEach
     void setUp() {
-        // Reset and reinitialize orders for a clean test environment
         orderData = new OrderData();
-        OrderData.orders.clear();  // Assuming 'orders' list is accessible, make it public or provide a method to clear it
-        // Re-add orders
+        OrderData.orders.clear();
+        // Re-adding orders
         OrderData.orders.add(OrderData.createOrder(1, 1, 100, new Date(), "placed", true));
         OrderData.orders.add(OrderData.createOrder(2, 1, 50, new Date(), "approved", true));
         OrderData.orders.add(OrderData.createOrder(3, 1, 50, new Date(), "delivered", true));

@@ -10,7 +10,6 @@ class ManualRequestContext extends RequestContext {
 
     public ManualRequestContext() {
         super();
-        // Initialize necessary headers
         headers.add("Content-Type", "application/json");
         // Default acceptable media types, you can add more as required
         this.setAcceptableMediaTypes(java.util.Collections.singletonList(MediaType.APPLICATION_JSON_TYPE));
@@ -21,8 +20,6 @@ class ManualRequestContext extends RequestContext {
         return headers;
     }
 
-    // Assuming this method exists in your RequestContext and needs to be overridden
-    // If it does not exist, you will need to modify your RequestContext class to include it
     @Override
     public java.util.List<MediaType> getAcceptableMediaTypes() {
         return java.util.Collections.singletonList(MediaType.APPLICATION_JSON_TYPE);
