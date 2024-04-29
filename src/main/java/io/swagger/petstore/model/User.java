@@ -32,6 +32,13 @@ public class User {
   private String phone;
   private int userStatus;
 
+    public User(long l, String newuser, String aNew, String user, String mail, String password, String s, int i) {
+    }
+
+    public User() {
+
+    }
+
   @XmlElement(name = "id")
   public long getId() {
     return id;

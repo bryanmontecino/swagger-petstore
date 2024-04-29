@@ -95,7 +95,7 @@
                     <monitoredDirName>.</monitoredDirName>
                     <scanTargets>
                         <scanTarget>inflector.yaml</scanTarget>
-                        <scanTarget>src/main/resources/openapi-inflector.yaml</scanTarget>
+                        <scanTarget>src/main/resources/openapi.yaml</scanTarget>
                     </scanTargets>
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                     <webApp>
@@ -199,6 +199,18 @@
             <groupId>io.swagger.parser.v3</groupId>
             <artifactId>swagger-parser</artifactId>
             <version>${swagger-parser-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
